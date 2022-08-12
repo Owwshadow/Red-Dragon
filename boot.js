@@ -121,6 +121,7 @@ try {
 
 const { Low, JSONFile } = low
 const mongoDB = require('./lib/mongoDB')
+const { getRsBlockTable } = require('qrcode-terminal/vendor/QRCode/QRRSBlock')
 
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 
@@ -270,6 +271,7 @@ footer: `${footer}`,
 buttons,
 headerType: 4
 }
+if (global.welcom_msg === "false")return
 KUMUTHU.sendMessage(anu.id, buttonMessage)
                 } else if (anu.action == 'remove') {
                 	const xeonbuffer = await getBuffer(ppuser)
@@ -296,6 +298,7 @@ Time =  ${xeontime} `
     buttons,
     headerType: 4
     }
+if (global.welcom_msg === "false")return
 KUMUTHU.sendMessage(anu.id, buttonMessage)
                 }
             }
